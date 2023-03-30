@@ -1,0 +1,45 @@
+type Error {
+  message: String!
+}
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, id: Int!): MutationUpdateUserResult!
+}
+
+union MutationUpdateUserResult = Error | MutationUpdateUserSuccess
+
+type MutationUpdateUserSuccess {
+  data: User!
+}
+
+type Query {
+  allUsers: [User!]!
+  user(id: Int!): User
+}
+
+type User {
+  accountNumber: String
+  city: String
+  email: String
+  firstName: String
+  id: Int!
+  lastName: String
+  phoneNumber: String
+}
+
+input UserCreateInput {
+  accountNumber: String!
+  city: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+}
+
+input UserUpdateInput {
+  city: String
+  email: String
+  firstName: String
+  lastName: String
+}
